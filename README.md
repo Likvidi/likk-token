@@ -1,5 +1,20 @@
-Hardhat Template
-================
+LIKK Token contract
+===================
 
-Todo: write more here
+Install:
 
+```shell
+npm install
+```
+
+Test:
+
+```shell
+npm install
+```
+
+Deploy:
+
+```shell
+npx hardhat --network NETWORK deploy
+```

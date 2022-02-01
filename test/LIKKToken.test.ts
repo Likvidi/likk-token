@@ -27,23 +27,13 @@ describe("LIKKToken", function() {
     ownerAddress = await ownerAccount.getAddress();
     anotherAddress = await anotherAccount.getAddress();
 
-    const MockLosslessController = await ethers.getContractFactory("MockLosslessController");
-    const losslessController = await MockLosslessController.deploy();
-
     const LIKKToken = await ethers.getContractFactory("LIKKToken");
-    likkToken = await LIKKToken.deploy(
-      '0x0000000000000000000000000000000000000000',// address losslessAdmin,
-      '0x0000000000000000000000000000000000000000', // address losslessRecoveryAdmin,
-      24 * 60 * 60, // uint256 losslessTimelockPeriod,
-      losslessController.address, // address losslessContract
-    );
+    likkToken = await LIKKToken.deploy();
     await likkToken.deployed();
   });
 
   it("totalSupply", async () => {
     const expectedTotalSupply = parseEther('1 000 000 000'.replace(/ /g, ''));
-    console.log('totalSupply', (await likkToken.totalSupply()).toString().replace(/000/g, ' 000'));
-    console.log('owner balance', (await likkToken.balanceOf(ownerAddress)).toString().replace(/000/g, ' 000'));
     expect(await likkToken.totalSupply()).to.be.equal(expectedTotalSupply);
     expect(await likkToken.balanceOf(ownerAddress)).to.be.equal(expectedTotalSupply);
   });

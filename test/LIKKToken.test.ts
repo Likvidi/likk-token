@@ -50,5 +50,23 @@ describe("LIKKToken", function() {
     expect(await likkToken.decimals()).to.be.equal(18);
   });
 
-  // TODO: test burn
+  it("burn", async () => {
+    await likkToken.transfer(anotherAddress, parseEther('10'));
+    const totalSupplyBefore = await likkToken.totalSupply();
+    await likkToken.connect(anotherAccount).burn(parseEther('2.5'));
+    expect(await likkToken.totalSupply()).to.be.equal(totalSupplyBefore.sub(parseEther('2.5')));
+    expect(await likkToken.balanceOf(anotherAddress)).to.be.equal(parseEther('7.5'))
+  });
+
+  it("burnFrom", async () => {
+    await likkToken.transfer(anotherAddress, parseEther('10'));
+    const totalSupplyBefore = await likkToken.totalSupply();
+    await expect(
+      likkToken.burnFrom(anotherAddress, parseEther('2.5'))
+    ).to.be.reverted;
+    await likkToken.connect(anotherAccount).approve(ownerAddress, parseEther('2.5'));
+    await likkToken.burnFrom(anotherAddress, parseEther('2.5'));
+    expect(await likkToken.totalSupply()).to.be.equal(totalSupplyBefore.sub(parseEther('2.5')));
+    expect(await likkToken.balanceOf(anotherAddress)).to.be.equal(parseEther('7.5'))
+  });
 });

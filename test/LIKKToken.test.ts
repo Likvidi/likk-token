@@ -1,8 +1,8 @@
 /**
  * LIKK token tests
  *
- * The token is just a simple extension of OpenZeppelin ERC20.sol,
- * as outlined in https://docs.openzeppelin.com/contracts/4.x/erc20
+ * The token is just a simple extension of OpenZeppelin ERC777.sol,
+ * as outlined in https://docs.openzeppelin.com/contracts/4.x/erc777
  *
  * So these tests need not test very much.
  */

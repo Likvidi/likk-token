@@ -10,7 +10,7 @@ npm install
 Test:
 
 ```shell
-npm install
+npm test
 ```
 
 Deploy:

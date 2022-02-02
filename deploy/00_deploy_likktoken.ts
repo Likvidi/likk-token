@@ -6,7 +6,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const {deployer} = await hre.getNamedAccounts();
   await deploy('LIKKToken', {
     from: deployer,
-    args: [],
+    args: [[]],
     log: true,
   });
 };

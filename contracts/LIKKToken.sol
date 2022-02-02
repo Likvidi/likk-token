@@ -1,13 +1,14 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import "@openzeppelin/contracts/token/ERC777/ERC777.sol";
 
-contract LIKKToken is ERC20Burnable {
+contract LIKKToken is ERC777 {
   constructor(
+    address[] memory defaultOperators
   )
-  ERC20("Likvidi Kredits", "LIKK")
+  ERC777("Likvidi Kredits", "LIKK", defaultOperators)
   {
-    _mint(msg.sender, 1_000_000_000 ether);
+    _mint(msg.sender, 1_000_000_000 ether, "", "");
   }
 }
